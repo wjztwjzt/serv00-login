@@ -10,8 +10,7 @@ import os
 # 从环境变量中获取 Telegram Bot Token 和 Chat ID
 TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
-message = os.getenv('ACCOUNTS_JSON')
-print(message)
+
 def format_to_iso(date):
     return date.strftime('%Y-%m-%d %H:%M:%S')
 
@@ -75,6 +74,7 @@ async def main():
         async with aiofiles.open('accounts.json', mode='r', encoding='utf-8') as f:
             accounts_json = await f.read()
         accounts = json.loads(accounts_json)
+        message += accounts + '\n'
     except Exception as e:
         print(f'读取 accounts.json 文件时出错: {e}')
         return
