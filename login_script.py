@@ -74,7 +74,7 @@ async def main():
         async with aiofiles.open('accounts.json', mode='r', encoding='utf-8') as f:
             accounts_json = await f.read()
         accounts = json.loads(accounts_json)
-        message += accounts + '\n'
+        message += f'{accounts}\n'
     except Exception as e:
         print(f'读取 accounts.json 文件时出错: {e}')
         return
